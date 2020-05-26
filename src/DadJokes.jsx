@@ -47,7 +47,8 @@ class DadJokes extends React.Component {
 
     return (
       <>
-        <ul>{jokesList}</ul>
+        <button onClick={this.addBatchOfJokes}>More jokes!</button>
+        <ol>{jokesList}</ol>
       </>
     );
   }
