@@ -9,21 +9,27 @@ class DadJokes extends React.Component {
   state = { jokes: [] };
 
   componentDidMount() {
-    this.addBatchOfJokes();
+    const jokes = JSON.parse(localStorage.getItem("jokes"));
+
+    if (jokes) {
+      this.setState({ jokes });
+    } else {
+      this.addBatchOfJokes();
+    }
   }
 
   getJoke = async (ids) => {
     let joke = await loadData();
 
     if (ids.has(joke.id)) {
-      joke = await this.getJoke();
+      joke = await this.getJoke(ids);
     }
 
     return joke;
   };
 
   addBatchOfJokes = async (n = JOKES_BATCH_SIZE) => {
-    const { jokes } = this.state;
+    let { jokes } = this.state;
     let existIds = new Set(jokes.map((el) => el.id));
 
     const newJokes = new Array(n);
@@ -34,9 +40,11 @@ class DadJokes extends React.Component {
       existIds.add(joke.id);
     }
 
-    this.setState({
-      jokes: [...jokes, ...newJokes],
-    });
+    jokes = [...jokes, ...newJokes];
+
+    this.setState({ jokes });
+
+    localStorage.setItem("jokes", JSON.stringify(jokes));
   };
 
   handleClick = () => {
