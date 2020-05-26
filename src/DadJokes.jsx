@@ -8,33 +8,39 @@ const JOKES_BATCH_SIZE = 10;
 class DadJokes extends React.Component {
   state = { jokes: [] };
 
-  addJoke = async () => {
-    let { id, joke: text } = await loadData();
-
-    let isAdded = false;
-
-    this.setState(({ jokes }) => {
-      const isRepeat = jokes.some((el) => el.id === id);
-      if (isRepeat) return { jokes };
-
-      isAdded = true;
-      return { jokes: [...jokes, { id, text, votes: 0 }] };
-    });
-
-    if (!isAdded) {
-      this.addJoke();
-    }
-  };
-
-  addBatchOfJokes = () => {
-    for (let i = 0; i < JOKES_BATCH_SIZE; i++) {
-      this.addJoke();
-    }
-  };
-
   componentDidMount() {
     this.addBatchOfJokes();
   }
+
+  getJoke = async (ids) => {
+    let joke = await loadData();
+
+    if (ids.has(joke.id)) {
+      joke = await this.getJoke();
+    }
+
+    return joke;
+  };
+
+  addBatchOfJokes = async (n = JOKES_BATCH_SIZE) => {
+    const { jokes } = this.state;
+    const stateIds = new Set(jokes.map((el) => el.id));
+
+    const newJokes = new Array(n);
+
+    for (let i = 0; i < n; i++) {
+      let joke = await this.getJoke(stateIds);
+      newJokes[i] = { ...joke, votes: 0 };
+    }
+
+    this.setState({
+      jokes: [...jokes, ...newJokes],
+    });
+  };
+
+  handleClick = () => {
+    this.addBatchOfJokes();
+  };
 
   render() {
     const { jokes } = this.state;
@@ -47,7 +53,7 @@ class DadJokes extends React.Component {
 
     return (
       <>
-        <button onClick={this.addBatchOfJokes}>More jokes!</button>
+        <button onClick={this.handleClick}>More jokes!</button>
         <ol>{jokesList}</ol>
       </>
     );
