@@ -8,9 +8,7 @@ async function loadData() {
 
   if (response.ok) {
     let json = await response.json();
-    let { id, joke } = json;
-
-    return { id, joke };
+    return json;
   } else {
     throw new Error("Can't load joke");
   }
