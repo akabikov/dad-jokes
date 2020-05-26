@@ -24,13 +24,14 @@ class DadJokes extends React.Component {
 
   addBatchOfJokes = async (n = JOKES_BATCH_SIZE) => {
     const { jokes } = this.state;
-    const stateIds = new Set(jokes.map((el) => el.id));
+    let existIds = new Set(jokes.map((el) => el.id));
 
     const newJokes = new Array(n);
 
     for (let i = 0; i < n; i++) {
-      let joke = await this.getJoke(stateIds);
+      let joke = await this.getJoke(existIds);
       newJokes[i] = { ...joke, votes: 0 };
+      existIds.add(joke.id);
     }
 
     this.setState({
