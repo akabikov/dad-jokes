@@ -18,6 +18,13 @@ class DadJokes extends React.Component {
     }
   }
 
+  componentDidUpdate(_prevProps, prevState) {
+    const { jokes } = this.state;
+    if (prevState.jokes !== jokes) {
+      localStorage.setItem("jokes", JSON.stringify(jokes));
+    }
+  }
+
   getJoke = async (ids) => {
     let joke = await loadData();
 
