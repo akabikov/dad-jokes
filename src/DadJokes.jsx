@@ -52,10 +52,10 @@ class DadJokes extends React.Component {
   };
 
   vote = (id, step) => {
-    this.setState((st) => ({
-      jokes: st.jokes.map((el) =>
-        el.id === id ? { ...el, rating: el.rating + step } : el
-      ),
+    this.setState(({ jokes }) => ({
+      jokes: jokes
+        .map((el) => (el.id === id ? { ...el, rating: el.rating + step } : el))
+        .sort((a, b) => b.rating - a.rating),
     }));
   };
 
