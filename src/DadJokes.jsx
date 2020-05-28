@@ -36,7 +36,7 @@ class DadJokes extends React.Component {
 
     for (let i = 0; i < n; i++) {
       let joke = await this.getJoke(existIds);
-      newJokes[i] = { ...joke, votes: 0 };
+      newJokes[i] = { ...joke, rating: 0 };
       existIds.add(joke.id);
     }
 
@@ -51,12 +51,20 @@ class DadJokes extends React.Component {
     this.addBatchOfJokes();
   };
 
+  vote = (id, step) => {
+    this.setState((st) => ({
+      jokes: st.jokes.map((el) =>
+        el.id === id ? { ...el, rating: el.rating + step } : el
+      ),
+    }));
+  };
+
   render() {
     const { jokes } = this.state;
 
-    const jokesList = jokes.map(({ id, text, votes }) => (
-      <li key={id}>
-        <JokeItem id={id} text={text} votes={votes} />
+    const jokesList = jokes.map((joke) => (
+      <li key={joke.id}>
+        <JokeItem {...joke} vote={this.vote} />
       </li>
     ));
 

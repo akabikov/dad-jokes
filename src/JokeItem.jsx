@@ -1,11 +1,17 @@
 import React from "react";
+import Poll from "./Poll";
 import "./JokeItem.css";
 
 class JokeItem extends React.Component {
   render() {
-    const { id, text, votes } = this.props;
+    const { text, ...poll } = this.props;
 
-    return <>{text}</>;
+    return (
+      <>
+        {text}
+        <Poll {...poll} />
+      </>
+    );
   }
 }
 
