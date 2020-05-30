@@ -62,20 +62,22 @@ class DadJokes extends React.Component {
 
   vote = (id, step) => {
     this.setState(({ jokes }) => ({
-      jokes: jokes
-        .map((el) => (el.id === id ? { ...el, rating: el.rating + step } : el))
-        .sort((a, b) => b.rating - a.rating),
+      jokes: jokes.map((el) =>
+        el.id === id ? { ...el, rating: el.rating + step } : el
+      ),
     }));
   };
 
   render() {
     const { jokes, isLoading } = this.state;
 
-    const jokesList = jokes.map((joke) => (
-      <li key={joke.id}>
-        <JokeItem {...joke} vote={this.vote} />
-      </li>
-    ));
+    const jokesList = jokes
+      .sort((a, b) => b.rating - a.rating)
+      .map((joke) => (
+        <li key={joke.id}>
+          <JokeItem {...joke} vote={this.vote} />
+        </li>
+      ));
 
     return (
       <>
