@@ -77,13 +77,16 @@ class DadJokes extends React.Component {
       </li>
     ));
 
-    const loader = isLoading ? <div class='Loader'></div> : "";
-
     return (
       <>
-        {loader}
-        <button onClick={this.handleClick}>More jokes!</button>
-        <ol>{jokesList}</ol>
+        {isLoading ? (
+          <div class='Loader'>Loading...</div>
+        ) : (
+          <>
+            <button onClick={this.handleClick}>More jokes!</button>
+            <ol>{jokesList}</ol>
+          </>
+        )}
       </>
     );
   }
