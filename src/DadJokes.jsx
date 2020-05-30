@@ -6,7 +6,7 @@ import "./DadJokes.css";
 const JOKES_BATCH_SIZE = 10;
 
 class DadJokes extends React.Component {
-  state = { jokes: [] };
+  state = { jokes: [], isLoading: false };
 
   componentDidMount() {
     const jokes = JSON.parse(localStorage.getItem("jokes"));
@@ -36,6 +36,8 @@ class DadJokes extends React.Component {
   };
 
   addBatchOfJokes = async (n = JOKES_BATCH_SIZE) => {
+    this.setState({ isLoading: true });
+
     let { jokes } = this.state;
     let existIds = new Set(jokes.map((el) => el.id));
 
@@ -49,7 +51,7 @@ class DadJokes extends React.Component {
 
     jokes = [...jokes, ...newJokes];
 
-    this.setState({ jokes });
+    this.setState({ jokes, isLoading: false });
 
     localStorage.setItem("jokes", JSON.stringify(jokes));
   };
@@ -67,7 +69,7 @@ class DadJokes extends React.Component {
   };
 
   render() {
-    const { jokes } = this.state;
+    const { jokes, isLoading } = this.state;
 
     const jokesList = jokes.map((joke) => (
       <li key={joke.id}>
@@ -75,8 +77,11 @@ class DadJokes extends React.Component {
       </li>
     ));
 
+    const loader = isLoading ? <div class='Loader'></div> : "";
+
     return (
       <>
+        {loader}
         <button onClick={this.handleClick}>More jokes!</button>
         <ol>{jokesList}</ol>
       </>
