@@ -1,7 +1,8 @@
+/* See vars in App.css */
+
 .JokeItem {
-  background-color: white;
+  background-color: var(--box-background-color);
   padding: 20px 15px 0 15px;
-  margin: 10px auto;
-  max-width: 700px;
-  /* position: relative; */
+  margin: var(--box-margin) auto;
+  max-width: var(--box-width);
 }

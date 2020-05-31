@@ -1,6 +1,8 @@
+/* See vars in App.css */
+
 .Poll {
-  margin: 0 0 5px 0;
-  padding: 0 0 5px 0;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
   display: flex;
   justify-content: flex-end;
 }
@@ -12,7 +14,7 @@
 }
 
 .Poll button {
-  font-family: "Font Awesome 5 Free";
+  font-family: var(--icons-font);
   background-color: transparent;
   border: 0;
   padding: 0.1rem;
@@ -24,17 +26,17 @@
 }
 
 .Poll button[name="up"]::after {
-  content: "\f164";
+  content: var(--vote-up-icon);
 }
 
 .Poll button[name="down"]::after {
-  content: "\f165";
+  content: var(--vote-down-icon);
 }
 
 .positive {
-  color: #859900;
+  color: var(--rating-positive-color);
 }
 
 .negative {
-  color: #ff1e00;
+  color: var(--rating-negative-color);
 }

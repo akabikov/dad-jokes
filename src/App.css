@@ -1,3 +1,24 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --page-background-color: #f5f4f2;
+  --box-background-color: white;
+  --shadow-color: #e6e5e0;
+  --button-border-color: #cccccc;
+  --rating-positive-color: #859900;
+  --rating-negative-color: #ff1e00;
+
+  --box-width: 700px;
+  --box-margin: 10px;
+  --header-height: 3rem;
+  --button-with: 8rem;
+
+  --icons-font: "Font Awesome 5 Free";
+  --loader-icon: "\f599";
+  --vote-up-icon: "\f164";
+  --vote-down-icon: "\f165";
 }
