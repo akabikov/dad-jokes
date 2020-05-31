@@ -82,11 +82,19 @@ class DadJokes extends React.Component {
     return (
       <>
         {isLoading ? (
-          <div class='Loader'>Loading...</div>
+          <div className='Loader'></div>
         ) : (
           <>
-            <button onClick={this.handleClick}>More jokes!</button>
-            <ol>{jokesList}</ol>
+            <header>
+              <div>
+                <button onClick={this.handleClick} className='get-more-button'>
+                  More jokes!
+                </button>
+              </div>
+            </header>
+            <main>
+              <ul className='JokeList'>{jokesList}</ul>
+            </main>
           </>
         )}
       </>

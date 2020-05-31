@@ -7,10 +7,10 @@ class JokeItem extends React.Component {
     const { text, ...poll } = this.props;
 
     return (
-      <>
+      <div className='JokeItem'>
         {text}
         <Poll {...poll} />
-      </>
+      </div>
     );
   }
 }

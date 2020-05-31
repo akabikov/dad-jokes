@@ -1,0 +1,28 @@
+.Poll {
+  margin: 0 0 5px 0;
+  padding: 0 0 5px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Poll span {
+  width: 1.6rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.Poll button {
+  font-family: "Font Awesome 5 Free";
+  background-color: transparent;
+  border: 0;
+  padding: 0.1rem;
+  cursor: pointer;
+}
+
+.Poll button[name="up"]::after {
+  content: "\f164";
+}
+
+.Poll button[name="down"]::after {
+  content: "\f165";
+}

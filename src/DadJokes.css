@@ -1,0 +1,59 @@
+header {
+  position: fixed;
+  background-color: white;
+  top: 0;
+  width: 100%;
+  height: 3rem;
+  border-bottom: 1px solid #f5f4f2;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+header div {
+  max-width: 700px;
+  margin: auto;
+  line-height: 3rem;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.get-more-button {
+  margin: auto;
+  background-color: transparent;
+  padding: 0.4rem;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+}
+
+.JokeList {
+  margin-top: 3.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.Loader {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Loader::before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 7rem;
+  content: "\f599";
+  animation: spin infinite 2s linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Poll.css";
 
 const STEP = {
   up: +1,
@@ -15,15 +16,11 @@ class Poll extends React.Component {
     const { rating } = this.props;
 
     return (
-      <>
-        <button name='up' onClick={this.handleClick}>
-          Up
-        </button>
+      <div className='Poll'>
+        <button name='up' onClick={this.handleClick} />
         <span>{rating}</span>
-        <button name='down' onClick={this.handleClick}>
-          Down
-        </button>
-      </>
+        <button name='down' onClick={this.handleClick} />
+      </div>
     );
   }
 }
