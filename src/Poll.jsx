@@ -15,10 +15,13 @@ class Poll extends React.Component {
   render() {
     const { rating } = this.props;
 
+    let ratingClass =
+      +rating > 0 ? "positive" : +rating < 0 ? "negative" : "neutral";
+
     return (
       <div className='Poll'>
         <button name='up' onClick={this.handleClick} />
-        <span>{rating}</span>
+        <span className={ratingClass}>{rating}</span>
         <button name='down' onClick={this.handleClick} />
       </div>
     );
