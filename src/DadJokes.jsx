@@ -6,7 +6,7 @@ import "./DadJokes.css";
 const JOKES_BATCH_SIZE = 10;
 
 class DadJokes extends React.Component {
-  state = { jokes: [], isLoading: false };
+  state = { jokes: [], isLoading: false, orderByRating: false };
 
   componentDidMount() {
     const jokes = JSON.parse(localStorage.getItem("jokes"));
@@ -56,8 +56,12 @@ class DadJokes extends React.Component {
     localStorage.setItem("jokes", JSON.stringify(jokes));
   };
 
-  handleClick = () => {
+  handleGetMore = () => {
     this.addBatchOfJokes();
+  };
+
+  handleOrderBy = () => {
+    this.setState(({ orderByRating }) => ({ orderByRating: !orderByRating }));
   };
 
   vote = (id, step) => {
@@ -69,15 +73,17 @@ class DadJokes extends React.Component {
   };
 
   render() {
-    const { jokes, isLoading } = this.state;
+    const { jokes, isLoading, orderByRating } = this.state;
 
-    const jokesList = jokes
-      .sort((a, b) => b.rating - a.rating)
-      .map((joke) => (
-        <li key={joke.id}>
-          <JokeItem {...joke} vote={this.vote} />
-        </li>
-      ));
+    const jokesToShow = [...jokes];
+
+    if (orderByRating) jokesToShow.sort((a, b) => b.rating - a.rating);
+
+    const jokesList = jokesToShow.map((joke) => (
+      <li key={joke.id}>
+        <JokeItem {...joke} vote={this.vote} />
+      </li>
+    ));
 
     return (
       <>
@@ -87,8 +93,10 @@ class DadJokes extends React.Component {
           <>
             <header>
               <div>
-                <button onClick={this.handleClick} className='get-more-button'>
-                  More jokes!
+                <button onClick={this.handleGetMore}>More jokes!</button>
+                <button onClick={this.handleOrderBy}>
+                  Order by
+                  {orderByRating ? " recency" : " rating"}
                 </button>
               </div>
             </header>
