@@ -28,7 +28,7 @@ You can view online demo here: https://akabikov.github.io/dad-jokes/
 
 - [ICanHazDadJoke API](https://icanhazdadjoke.com/api) for jokes
 - [Font Awesome](https://fontawesome.com/icons?d=gallery&q=dice&s=solid&c=games&m=free) - v5.13.0
-- RealFaviconGenerator.net for generate favicons
+- [RealFaviconGenerator.net](https://realfavicongenerator.net/) for generate favicons
 
 ## Setup
 
